@@ -9,9 +9,9 @@
 #define BUFFER_SIZE 1024
 #define SHIFT 3 // chave da cifra de César
 
-void encrypt(char *message) {
-    for (int i = 0; message[i] != '\0'; i++) {
-        message[i] = message[i] + SHIFT;
+void encrypt(char *mensagem) {
+    for (int i = 0; mensagem[i] != '\0'; i++) {
+        mensagem[i] = mensagem[i] + SHIFT;
     }
 }
 
@@ -19,7 +19,7 @@ int main() {
     WSADATA wsa;
     SOCKET sock;
     struct sockaddr_in server;
-    char message[BUFFER_SIZE];
+    char mensagem[BUFFER_SIZE];
 
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
         printf("Falha ao inicializar. Codigo de erro: %d\n", WSAGetLastError());
@@ -44,12 +44,12 @@ int main() {
     }
 
     printf("Digite uma mensagem: ");
-    fgets(message, BUFFER_SIZE, stdin);
-    message[strcspn(message, "\n")] = '\0';
+    fgets(mensagem, BUFFER_SIZE, stdin);
+    mensagem[strcspn(mensagem, "\n")] = '\0';
 
-    encrypt(message);
-    send(sock, message, strlen(message), 0);
-    printf("Mensagem criptografada enviada: %s\n", message);
+    encrypt(mensagem);
+    send(sock, mensagem, strlen(mensagem), 0);
+    printf("Mensagem criptografada enviada: %s\n", mensagem);
 
     closesocket(sock);
     WSACleanup();
