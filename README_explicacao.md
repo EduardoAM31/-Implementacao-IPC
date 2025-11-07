@@ -1,6 +1,6 @@
 # Explicação do Código Cliente-Servidor com Sockets (Windows)
 
-Este projeto implementa uma comunicação **cliente-servidor** simples em linguagem C utilizando **Winsock2**, a biblioteca de sockets do Windows. 
+Este projeto da matéria de Sistemas distribuídos implementa uma comunicação **cliente-servidor** simples em linguagem C utilizando **Winsock2**, a biblioteca de sockets do Windows. 
 O objetivo é demonstrar como duas aplicações podem se comunicar por meio de uma conexão TCP/IP, trocando mensagens.
 
 ---
