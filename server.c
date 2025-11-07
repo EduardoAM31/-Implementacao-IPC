@@ -9,16 +9,16 @@
 #define BUFFER_SIZE 1024
 #define SHIFT 3 // chave da cifra de César
 
-void decrypt(char *message) {
-    for (int i = 0; message[i] != '\0'; i++) {
-        message[i] = message[i] - SHIFT;
+void decrypt(char *mensagem) {
+    for (int i = 0; mensagem[i] != '\0'; i++) {
+        mensagem[i] = mensagem[i] - SHIFT;
     }
 }
 
 int main() {
     WSADATA wsa;
-    SOCKET server_fd, client_socket;
-    struct sockaddr_in server, client;
+    SOCKET server_fd, cliente_socket;
+    struct sockaddr_in server, cliente;
     int c;
     char buffer[BUFFER_SIZE] = {0};
 
@@ -50,8 +50,8 @@ int main() {
     listen(server_fd, 3);
 
     c = sizeof(struct sockaddr_in);
-    client_socket = accept(server_fd, (struct sockaddr *)&client, &c);
-    if (client_socket == INVALID_SOCKET) {
+    cliente_socket = accept(server_fd, (struct sockaddr *)&cliente, &c);
+    if (cliente_socket == INVALID_SOCKET) {
         printf("Falha ao aceitar conexao. Erro: %d\n", WSAGetLastError());
         closesocket(server_fd);
         WSACleanup();
@@ -59,7 +59,7 @@ int main() {
     }
 
     // Recebe mensagem
-    int recv_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
+    int recv_size = recv(cliente_socket, buffer, BUFFER_SIZE, 0);
     if (recv_size == SOCKET_ERROR) {
         printf("Erro ao receber mensagem.\n");
     } else {
@@ -69,7 +69,7 @@ int main() {
         printf("Mensagem decifrada: %s\n", buffer);
     }
 
-    closesocket(client_socket);
+    closesocket(cliente_socket);
     closesocket(server_fd);
     WSACleanup();
 
